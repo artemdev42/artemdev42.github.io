@@ -24,7 +24,7 @@ body {
 .card {
     position: relative;
     aspect-ratio: 1/1.414;
-    width: 60vw;
+    width: 80vw;
     transform-style: preserve-3d;
     perspective: 1000px;
     transition: transform 1s, scale 2s;
@@ -110,7 +110,7 @@ body {
 
 .back-content::before {
     left: 0% !important;
-    top: 50vh !important;
+    top: 40vh !important;
 }
 
 @keyframes rotate-gradient {
