@@ -97,7 +97,7 @@ function emoji() {
 }
 
 function pride() {
-  const end = Date.now() + .5 * 1000;
+  const end = Date.now() + 1 * 1000;
 
   // go Buckeyes!
   const colors = ["#bb0000", "#ffffff"];
