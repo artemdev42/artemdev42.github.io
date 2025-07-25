@@ -1,0 +1,144 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    --gradient: linear-gradient(60deg, #f79533, #f37055, #ef4e5e, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+    transition: background-color 1s;
+}
+
+.card-container {
+    width: fit-content;
+    height: fit-content;
+    perspective: 1000px;
+}
+
+.card {
+    position: relative;
+    aspect-ratio: 1/1.414;
+    width: 60vw;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: transform 1s, scale 2s;
+}
+
+@media (min-width: 800px) {
+    .card {
+        aspect-ratio: 1.414;
+        height: 60vh;
+        width: auto !important;
+    }
+}
+
+.face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 32px;
+    border: 1px solid rgb(47, 47, 47);
+    overflow: hidden;
+}
+
+.face > div {
+    width: 100%;
+    height: 100%;
+}
+
+.face.back {
+    transform: rotateY(180deg);
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+    scale: 1.2;
+}
+
+.front-content > div, .back-content > div {
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.front-content > div > *, .back-content > div > * {
+    z-index: 0;
+}
+
+.front-content::before, .back-content::before {
+    content: '';
+    z-index: 0;
+    position: absolute;
+    border-radius: 50%;
+    width: 100%;
+    aspect-ratio: 1;
+    top: 0%;
+    left: 20%;
+    background: var(--gradient);
+    filter: blur(30px);
+    -webkit-filter: blur(30px);
+    /* animation: rotate-gradient 4s infinite linear; */
+}
+
+.back-content::after {
+    content: '';
+    z-index: 0;
+    position: absolute;
+    border-radius: 50%;
+    width: 100%;
+    aspect-ratio: 1;
+    top: -75vh;
+    left: 0%;
+    background: var(--gradient);
+    filter: blur(30px);
+    -webkit-filter: blur(30px);
+}
+
+
+.back-content::before {
+    left: 0% !important;
+    top: 50vh !important;
+}
+
+@keyframes rotate-gradient {
+    0% { rotate: 0deg; scale: 1;}
+    50% { rotate: 180deg; scale: 1.1; }
+    100% { rotate: 360deg; scale: 1;}
+}
+
+
+#emitter {
+  visibility: hidden;
+  background-color: #222;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+}
+.dot-container {
+  position:absolute;
+  left:0;
+  top:0;
+  overflow:visible;
+  z-index:5000;
+  pointer-events:none;
+}
+.dot {
+  position: absolute;
+  pointer-events: none; /*performance optimization*/
+}
